@@ -21,14 +21,14 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: linear-gradient(145deg, #fce4ec, #e1f5fe, #f3e5f5);
+      background: linear-gradient(135deg, #ffe5ec, #e0f7fa);
       position: relative;
       overflow: hidden;
       color: #000;
       text-align: center;
     }
 
-    /* Novo fundo com 8 corações (nova imagem) */
+    /* Fundo com flores de lótus */
     body::before {
       content: "";
       position: fixed;
@@ -49,15 +49,15 @@
       background-repeat: no-repeat;
       background-position:
         5% 10%,
-        20% 70%,
-        35% 20%,
-        50% 80%,
-        65% 10%,
+        90% 15%,
+        50% 5%,
+        25% 30%,
         75% 50%,
-        85% 25%,
-        90% 75%;
-      background-size: 45px 45px;
-      opacity: 0.3;
+        10% 70%,
+        50% 85%,
+        85% 80%;
+      background-size: 50px 50px;
+      opacity: 0.25;
       z-index: 0;
     }
 
@@ -102,7 +102,7 @@
 </head>
 <body>
   <div class="creditos">Feito por MugShopp - Presentes Personalizados</div>
-  <img class="colecao" src="https://i.postimg.cc/sXf8NTQt/Photoroom-20250527-105033202.png" alt="Imagem da Coleção" />
+  <img class="colecao" src="https://i.postimg.cc/sXf8NTQt/Photoroom-20250527-105033202.png" alt="Imagem Coleção" />
   <div class="frase" id="frase">Carregando frase...</div>
   <img class="logo" src="https://i.postimg.cc/7LWQCZjQ/Logo-Alta-Resolu-o-1.png" alt="Logo MugShopp" />
 
@@ -114,7 +114,7 @@
         const texto = await response.text();
         const frases = texto.split('\n').filter(l => l.trim() !== '');
         const hoje = new Date();
-        const inicio = new Date(hoje.getFullYear(), 0, 1);
+        const inicio = new Date(hoje.getFullYear(), 0, 1); // 1º de janeiro
         const diff = hoje - inicio;
         const umDia = 1000 * 60 * 60 * 24;
         const diaDoAno = Math.floor(diff / umDia);
