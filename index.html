@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expansão da Consciência</title>
+  <style>
+    @font-face {
+      font-family: 'Ahkio';
+      src: url('./fonts/Ahkio-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fce4ec, #e1f5fe, #f3e5f5);
+      position: relative;
+      overflow: hidden;
+      color: #000;
+      text-align: center;
+    }
+
+    /* Fundo com corações */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background-image:
+        url('https://i.postimg.cc/SRQ1XYD8/images-1-4.png'),
+        url('https://i.postimg.cc/SRQ1XYD8/images-1-4.png'),
+        url('https://i.postimg.cc/SRQ1XYD8/images-1-4.png'),
+        url('https://i.postimg.cc/SRQ1XYD8/images-1-4.png'),
+        url('https://i.postimg.cc/SRQ1XYD8/images-1-4.png');
+      background-repeat: no-repeat;
+      background-position:
+        10% 15%,
+        50% 5%,
+        80% 30%,
+        25% 70%,
+        75% 75%;
+      background-size: 40px 40px;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    .creditos {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #222;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+
+    .colecao {
+      width: 170px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .frase {
+      font-family: 'Ahkio', cursive, sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      max-width: 90%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 180px;
+      opacity: 1;
+      margin-top: 0;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="creditos">Feito por MugShopp - Presentes Personalizados</div>
+  <img class="colecao" src="https://i.postimg.cc/sXf8NTQt/Photoroom-20250527-105033202.png" alt="Imagem da Coleção" />
+  <div class="frase" id="frase">Carregando frase...</div>
+  <img class="logo" src="https://i.postimg.cc/7LWQCZjQ/Logo-Alta-Resolu-o-1.png" alt="Logo MugShopp" />
+
+  <script>
+    async function carregarFrase() {
+      try {
+        const response = await fetch('jornada.txt');
+        if (!response.ok) throw new Error('Arquivo jornada.txt não encontrado');
+        const texto = await response.text();
+        const frases = texto.split('\n').filter(l => l.trim() !== '');
+        const hoje = new Date();
+        const inicio = new Date(hoje.getFullYear(), 0, 1);
+        const diff = hoje - inicio;
+        const umDia = 1000 * 60 * 60 * 24;
+        const diaDoAno = Math.floor(diff / umDia);
+        const frase = frases[diaDoAno % frases.length];
+        document.getElementById('frase').textContent = `"${frase}"`;
+      } catch (e) {
+        document.getElementById('frase').textContent = 'Erro ao carregar a frase do dia.';
+        console.error(e);
+      }
+    }
+    carregarFrase();
+  </script>
+</body>
+</html>
